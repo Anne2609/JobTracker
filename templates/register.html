@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}Înregistrare | JobTracker{% endblock %}
+{% block content %}
+<div class="auth-card card border-0 shadow-sm mx-auto"><div class="card-body p-4 p-md-5">
+ <span class="eyebrow">ÎNCEPE CU JOBTRACKER</span><h1 class="h3 fw-bold my-3">Creează cont</h1>
+ <form method="post" class="needs-validation" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="mb-3"><label for="name" class="form-label">Nume *</label><input id="name" name="name" maxlength="100" required class="form-control" autocomplete="name" value="{{ request.form.get('name', '') }}"><div class="invalid-feedback">Introdu numele.</div></div>
+  <div class="mb-3"><label for="email" class="form-label">Email *</label><input type="email" id="email" name="email" maxlength="255" required class="form-control" autocomplete="email" value="{{ request.form.get('email', '') }}"><div class="invalid-feedback">Introdu un email valid.</div></div>
+  <div class="mb-3"><label for="password" class="form-label">Parolă (minim 10 caractere) *</label><input type="password" id="password" name="password" minlength="10" maxlength="128" required class="form-control" autocomplete="new-password"><div class="invalid-feedback">Minim 10 caractere.</div></div>
+  <div class="mb-3"><label for="confirm_password" class="form-label">Confirmă parola *</label><input type="password" id="confirm_password" name="confirm_password" minlength="10" maxlength="128" required class="form-control" autocomplete="new-password"><div class="invalid-feedback">Confirmă parola.</div></div>
+  <button class="btn btn-brand w-100" type="submit">Creează contul</button>
+ </form><p class="mt-4 mb-0 text-secondary">Ai deja cont? <a href="{{ url_for('login') }}">Autentifică-te</a>.</p>
+</div></div>
+{% endblock %}

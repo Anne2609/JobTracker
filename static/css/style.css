@@ -1,0 +1,16 @@
+:root { --brand:#6742cb; --ink:#20243b; }
+body { background:#f6f7fb; color:var(--ink); min-height:100vh; }
+.app-navbar { background:#25223e; }
+.eyebrow { font-size:.75rem; letter-spacing:.16em; font-weight:700; color:var(--brand); }
+.stat-card { border:1px solid #e8e8f1; border-radius:16px; box-shadow:0 3px 15px rgba(34,31,65,.04); }
+.stat-card .display-5 { color:var(--brand); }
+.btn-brand { color:white; background:var(--brand); border-color:var(--brand); }
+.btn-brand:hover, .btn-brand:focus { color:white; background:#5433b3; border-color:#5433b3; }
+.form-card { max-width:850px; }
+.table td,.table th { padding:1rem; }
+@media (max-width:576px) { main.container { padding-top:1.5rem !important; } .table td,.table th { padding:.65rem; } }
+
+.auth-card {max-width: 510px;}
+
+.chart-wrap { height: 320px; position: relative; }
+.text-brand { color: var(--brand); }

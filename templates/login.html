@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Login | JobTracker{% endblock %}
+{% block content %}
+<div class="auth-card card border-0 shadow-sm mx-auto"><div class="card-body p-4 p-md-5">
+ <span class="eyebrow">BINE AI REVENIT</span><h1 class="h3 fw-bold my-3">Autentificare</h1>
+ <form method="post" class="needs-validation" novalidate>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="mb-3"><label for="email" class="form-label">Email</label><input type="email" id="email" name="email" maxlength="255" required class="form-control" autocomplete="email" value="{{ request.form.get('email', '') }}"><div class="invalid-feedback">Introdu un email valid.</div></div>
+  <div class="mb-3"><label for="password" class="form-label">Parolă</label><input type="password" id="password" name="password" required class="form-control" autocomplete="current-password"><div class="invalid-feedback">Introdu parola.</div></div>
+  <button class="btn btn-brand w-100" type="submit">Intră în cont</button>
+ </form><p class="mt-4 mb-0 text-secondary">Nu ai cont? <a href="{{ url_for('register') }}">Înregistrează-te</a>.</p>
+</div></div>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Editează' if item else 'Candidatură nouă' }} | JobTracker{% endblock %}
+{% block content %}
+<div class="mb-4"><a href="{{ url_for('applications') }}" class="text-decoration-none">← Înapoi la candidaturi</a><h1 class="h2 fw-bold mt-3">{{ 'Editează candidatura' if item else 'Adaugă candidatură' }}</h1></div>
+{% set source = request.form if request.method == 'POST' else none %}
+<form method="post" class="card border-0 shadow-sm form-card needs-validation" novalidate>
+ <div class="card-body p-4"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><div class="row g-3">
+  <div class="col-md-6"><label for="position" class="form-label">Poziția *</label><input id="position" name="position" class="form-control" maxlength="150" required value="{{ source.get('position','') if source else (item.position if item else '') }}"><div class="invalid-feedback">Completează poziția.</div></div>
+  <div class="col-md-6"><label for="company" class="form-label">Compania *</label><input id="company" name="company" class="form-control" maxlength="150" required value="{{ source.get('company','') if source else (item.company.name if item else '') }}"><div class="invalid-feedback">Completează compania.</div></div>
+  <div class="col-md-6"><label for="applied_at" class="form-label">Data candidaturii *</label><input type="date" id="applied_at" name="applied_at" class="form-control" max="{{ today }}" required value="{{ source.get('applied_at','') if source else (item.applied_at.isoformat() if item else today) }}"><div class="invalid-feedback">Alege o dată validă, nu din viitor.</div></div>
+  <div class="col-md-6"><label for="status" class="form-label">Status *</label>{% set current_status = source.get('status','Applied') if source else (item.status if item else 'Applied') %}<select id="status" name="status" class="form-select" required>{% for status in statuses %}<option value="{{ status }}" {% if status == current_status %}selected{% endif %}>{{ status }}</option>{% endfor %}</select></div>
+  <div class="col-12"><label for="notes" class="form-label">Note</label><textarea id="notes" name="notes" maxlength="5000" rows="4" class="form-control">{{ source.get('notes','') if source else (item.notes or '' if item else '') }}</textarea></div>
+ </div><div class="d-flex flex-wrap gap-2 mt-4"><button type="submit" class="btn btn-brand">{{ 'Salvează modificările' if item else 'Adaugă candidatura' }}</button><a href="{{ url_for('applications') }}" class="btn btn-outline-secondary">Renunță</a></div></div>
+</form>
+{% endblock %}

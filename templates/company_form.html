@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}{{ 'Editează compania' if item else 'Companie nouă' }} | JobTracker{% endblock %}
+{% block content %}
+<a href="{{ url_for('companies') }}" class="text-decoration-none">← Înapoi la companii</a><h1 class="h2 fw-bold my-4">{{ 'Editează compania' if item else 'Adaugă companie' }}</h1>
+{% set source = request.form if request.method == 'POST' else none %}
+<form method="post" class="card border-0 shadow-sm needs-validation" novalidate><div class="card-body p-4"><input type="hidden" name="csrf_token" value="{{ csrf_token() }}"><div class="row g-3">
+<div class="col-md-6"><label for="name" class="form-label">Nume companie *</label><input id="name" name="name" class="form-control" maxlength="150" required value="{{ source.get('name','') if source else (item.name if item else '') }}"><div class="invalid-feedback">Introdu numele companiei.</div></div>
+<div class="col-md-6"><label for="industry" class="form-label">Industrie</label><input id="industry" name="industry" maxlength="100" class="form-control" value="{{ source.get('industry','') if source else (item.industry or '' if item else '') }}"></div>
+<div class="col-md-6"><label for="location" class="form-label">Locație</label><input id="location" name="location" maxlength="150" class="form-control" value="{{ source.get('location','') if source else (item.location or '' if item else '') }}"></div>
+<div class="col-md-6"><label for="website" class="form-label">Website (http:// sau https://)</label><input id="website" name="website" type="url" maxlength="255" class="form-control" value="{{ source.get('website','') if source else (item.website or '' if item else '') }}"><div class="invalid-feedback">Introdu un URL valid.</div></div>
+</div><div class="mt-4 d-flex gap-2"><button class="btn btn-brand">Salvează</button><a href="{{ url_for('companies') }}" class="btn btn-outline-secondary">Renunță</a></div></div></form>
+{% endblock %}

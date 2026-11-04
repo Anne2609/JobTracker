@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Statistici | JobTracker{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+  <div><span class="eyebrow">ANALIZĂ PERSONALĂ</span><h1 class="h2 fw-bold mt-2">Statistici</h1><p class="text-secondary mb-0">Rapoarte bazate exclusiv pe candidaturile contului tău.</p></div>
+  <a href="{{ url_for('export_applications') }}" class="btn btn-brand">Exportă CSV</a>
+</div>
+<div class="row g-3 mb-4">
+ <div class="col-6 col-lg-3"><div class="card stat-card h-100"><div class="card-body"><div class="text-secondary">Candidaturi</div><div class="display-6 fw-bold text-brand">{{ total }}</div></div></div></div>
+ <div class="col-6 col-lg-3"><div class="card stat-card h-100"><div class="card-body"><div class="text-secondary">Interviuri programate</div><div class="display-6 fw-bold text-brand">{{ interviews_count }}</div></div></div></div>
+ <div class="col-6 col-lg-3"><div class="card stat-card h-100"><div class="card-body"><div class="text-secondary">Oferte</div><div class="display-6 fw-bold text-brand">{{ offers }}</div></div></div></div>
+ <div class="col-6 col-lg-3"><div class="card stat-card h-100"><div class="card-body"><div class="text-secondary">Rată oferte</div><div class="display-6 fw-bold text-brand">{{ offer_rate }}%</div></div></div></div>
+</div>
+<div class="row g-4">
+ <div class="col-12 col-lg-6"><div class="card shadow-sm border-0 h-100"><div class="card-body p-4"><h2 class="h5">Candidaturi după status</h2><div class="chart-wrap"><canvas id="statusChart" aria-label="Distribuția statusurilor" role="img"></canvas></div></div></div></div>
+ <div class="col-12 col-lg-6"><div class="card shadow-sm border-0 h-100"><div class="card-body p-4"><h2 class="h5">Aplicări în ultimele 6 luni</h2><div class="chart-wrap"><canvas id="monthlyChart" aria-label="Candidaturi pe lună" role="img"></canvas></div></div></div></div>
+</div>
+<div class="card border-0 shadow-sm mt-4"><div class="card-body p-4"><h2 class="h5">Indicatori</h2>
+ <p class="mb-2"><strong>{{ response_rate }}%</strong> – procentul candidaturilor cu status Screening, Interview, Offer sau Rejected (indicator orientativ; nu reflectă neapărat toate răspunsurile primite).</p>
+ <p class="mb-0"><strong>{{ interview_application_count }}</strong> – candidaturi pentru care există cel puțin un interviu înregistrat.</p>
+ {% if total == 0 %}<div class="alert alert-info mt-3 mb-0">Nu ai încă date. <a href="{{ url_for('add_application') }}">Adaugă o candidatură</a> pentru a vedea graficele.</div>{% endif %}
+</div></div>
+<script id="chart-data" type="application/json">{{ {'statusLabels': status_labels, 'statusCounts': status_counts, 'monthLabels': month_labels, 'monthCounts': month_counts}|tojson }}</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/statistics.js') }}"></script>
+{% endblock %}
