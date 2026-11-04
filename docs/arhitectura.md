@@ -38,3 +38,17 @@ Pagina `/statistics` agregă statusuri și numărul de candidaturi pe lună (ult
 ## Securitate și limite
 
 Aceasta este o implementare educațională care demonstrează autentificare, autorizare la nivelul înregistrărilor, validare pe server și CSRF. Nu presupune că este pregătită pentru internet public. Pentru producție ar fi necesare configurare HTTPS, secret sigur fără fallback, limitarea încercărilor de autentificare, testare dedicată de securitate, loguri și deployment WSGI.
+
+## Fluxul de funcționare al aplicației
+
+Aplicația JobTracker utilizează arhitectura client-server.
+
+**1. Frontend:** Utilizatorul interacționează cu paginile HTML, stilizate prin CSS și Bootstrap. JavaScript asigură validarea formularelor și interactivitatea.
+
+**2. Backend:** Framework-ul Flask primește cererile HTTP, verifică autentificarea, procesează datele și execută operațiile necesare.
+
+**3. Baza de date:** SQLite stochează informațiile despre utilizatori, companii, candidaturi și interviuri. SQLAlchemy facilitează accesul la date și gestionarea relațiilor.
+
+**4. Securitate:** Flask-Login gestionează sesiunile utilizatorilor, iar verificările de autorizare limitează accesul la datele proprii. Formularele beneficiază de protecție CSRF.
+
+**5. Afișarea rezultatelor:** Flask transmite informațiile către șabloanele Jinja2, care generează paginile HTML afișate în browser.
