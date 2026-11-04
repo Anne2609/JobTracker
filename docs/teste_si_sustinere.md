@@ -50,3 +50,54 @@ Bifează după testarea **pe calculatorul propriu**; acestea sunt criterii de ve
 ## Punctaj și ce mai trebuie verificat
 
 Proiectul include implementări pentru elementele de structură HTML, design responsive, JavaScript, patru tabele relaționale, CRUD, autentificare și statistici. **Nota sau punctajul maxim nu pot fi garantate.** Minimum cinci commit-uri GitHub și jurnalul AI completat cu verificări reale sunt cerințe distincte, care trebuie demonstrate la susținere.
+## Verificarea funcționalităților aplicației JobTracker
+
+### 1. Testarea autentificării
+
+Au fost verificate manual următoarele funcționalități:
+
+- Înregistrarea unui utilizator nou.
+- Autentificarea cu email și parolă.
+- Deconectarea utilizatorului.
+- Redirecționarea utilizatorilor neautentificați către pagina Login.
+- Separarea datelor între conturi diferite.
+
+**Rezultat:** Testele au fost confirmate ca funcționale.
+
+### 2. Testarea operațiilor CRUD
+
+Pentru gestionarea candidaturilor au fost verificate:
+
+- Adăugarea unei candidaturi.
+- Afișarea candidaturii în tabel.
+- Modificarea poziției și a statusului.
+- Ștergerea candidaturii.
+- Actualizarea statisticilor din Dashboard.
+
+**Rezultat:** Toate cele cinci verificări au fost confirmate.
+
+### 3. Testarea companiilor și interviurilor
+
+Au fost confirmate deschiderea paginilor pentru companii și interviuri și funcționarea rutelor corespunzătoare.
+
+**Rezultat:** Paginile funcționează. Nu există încă o confirmare completă pentru toate operațiile CRUD din aceste două secțiuni.
+
+### 4. Testarea statisticilor
+
+Au fost verificate:
+
+- Accesarea paginii Statistics.
+- Afișarea graficelor pentru candidaturile utilizatorului.
+- Actualizarea statisticilor după modificarea unei candidaturi.
+- Exportarea datelor în format CSV.
+- Separarea statisticilor și exporturilor între utilizatori.
+
+**Rezultat:** Toate cele cinci verificări au fost confirmate.
+
+### 5. Concluzie
+
+Testarea manuală efectuată în timpul dezvoltării a confirmat funcționarea principalelor componente ale aplicației JobTracker.
+
+Pentru o verificare completă sunt recomandate teste suplimentare pentru toate operațiile CRUD, validările formularelor, situațiile de eroare și compatibilitatea pe dispozitive mobile.
+
+Testele automate nu au fost implementate sau confirmate în această etapă.
